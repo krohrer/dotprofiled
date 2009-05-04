@@ -3,45 +3,31 @@
 # Please, X, PIMP MY PROMPT!
 if [ "$TERM" != 'dumb' ] && [ -n "$BASH" ] && [ -n "$PS1" ]
 then
-	if [ `whoami` = 'root' ]
-	then
-		PPre="\n\[\e[1;37;41m\e[K\]"
-		PPost="\[\e[0m\]\n]] "
-		PInfo="  [\u@\h] : \[\e[33m\]\W"
-		function root_cmd_prompt()
-		{
-			# [YYYY-MM-DD HH-MM-SS]]] -> 23 Characters
-			PTime="\[$(tput sc)\e[$((${COLUMNS}-23))C\][$(date +'%G-%m-%d %T')] \[$(tput rc)\]"
-			export PS1="$PPre$PTime$PInfo$PPost"
-			export PS2=".. "
-		}
-		export PROMPT_COMMAND="root_cmd_prompt"
-	elif [ -z "$SSH_CONNECTION" ]
-	then
-		PPre="\n\[\e[1;37;44m\e[K\]"
-		PPost="\[\e[0m\]\n]] "
-		PInfo="  [\u@\h] : \[\e[32m\]\W"
-		function user_cmd_prompt()
-		{
-			# [YYYY-MM-DD HH-MM-SS]]] -> 23 Characters
-			PTime="\[$(tput sc)\e[$((${COLUMNS}-23))C\][$(date +'%G-%m-%d %T')] \[$(tput rc)\]"
-			export PS1="$PPre$PTime$PInfo$PPost"
-			export PS2=".. "
-		}
-		export PROMPT_COMMAND="user_cmd_prompt"
-	else
-		PPre="\n\[\e[1;30;47m\e[K\]"
-		PPost="\[\e[0m\]\n]] "
-		PInfo="  [\u@\h] : \[\e[32m\]\W"
-		function remote_cmd_prompt()
-		{
-			# [YYYY-MM-DD HH-MM-SS]]] -> 23 Characters
-			PTime="\[$(tput sc)\e[$((${COLUMNS}-23))C\][$(date +'%G-%m-%d %T')] \[$(tput rc)\]"
-			export PS1="$PPre$PTime$PInfo$PPost"
-			export PS2=".. "
-		}
-		export PROMPT_COMMAND="remote_cmd_prompt"
-	fi
+    SC=$(tput sc)
+    RC=$(tput rc)
+
+    if [ `whoami` = 'root' ]
+    then
+	function cmd_prompt()
+	{
+	    D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+	    export PS1="\n\e[1;37;41m${SC}${D}${RC}  [\u@\h] : \e[33m\W\e[0m\n]] "
+	}
+    elif [ -z "$SSH_CONNECTION" ]
+    then
+	function cmd_prompt()
+	{
+	    D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+	    export PS1="\n\e[1;37;44m${SC}${D}${RC}  [\u@\h] : \e[32m\W\e[0m\n]] "
+	}
+    else
+	function cmd_prompt()
+	{
+	    D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+	    export PS1="\n\e[1;30;47m${SC}${D}${RC}  [\u@\h] : \e[32m\W\e[0m\n]] "
+	}
+    fi
+    export PROMPT_COMMAND="cmd_prompt"
 
 # Fallback
 elif [ -n "$PS1" ]
