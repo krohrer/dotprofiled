@@ -9,7 +9,7 @@ export DISPLAY=:0.0
 export PATH=/Users/krohrer/godi/bin:/Users/krohrer/godi/sbin:$PATH
 
 # Subversion needs this for various commands
-export EDITOR=osxemacs
+export EDITOR=emacs
 
 # Colored ls in OS X (builtin):
 # export CLICOLOR=1
