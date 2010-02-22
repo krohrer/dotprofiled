@@ -2,11 +2,11 @@
 export RSYNC_RSH=$(which ssh)
 
 # Workaround for broken lablgtk2 installation, which breaks on gdk-pixbuf-mlsource
-export LIBRARY_PATH=.
+# export LIBRARY_PATH=.
 
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export DISPLAY=:0.0
-export PATH=/Users/krohrer/godi/bin:/Users/krohrer/godi/sbin:$PATH
+# export PATH=/Users/krohrer/GODI/bin:/Users/krohrer/GODI/sbin:$PATH
 
 # Subversion needs this for various commands
 export EDITOR=emacs
@@ -19,3 +19,5 @@ export EDITOR=emacs
 eval `gdircolors -b ~/.profile.d/DIR_COLORS`
 alias ls="gls --color=auto"
 export GREP_OPTIONS="--color"
+
+alias ocaml-libdir="ocamlc -where"
