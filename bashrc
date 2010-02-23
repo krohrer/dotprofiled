@@ -9,15 +9,15 @@ then
     function cmd_prompt()
     {
 	D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
-	if [ `whoami` = 'root' ]
+	if [ `whoami` == 'root' ]
 	then
-	    export PS1="\n\e[1;37;41m${SC}${D}${RC}  [\u@\h] : \e[33m\W\e[0m\n]] "
-	elif [ -z "$SSH_CONNECTION" ]
-	    export PS1="\n\e[1;37;44m${SC}${D}${RC}  [\u@\h] : \e[32m\W\e[0m\n]] "
+	    export PS1="\n\e[1;37; 41m${SC}${D}${RC}  [\u@\H $(arch)\e[37m] : \e[93m\W\e[0m\n]] "
+	elif [ -n "$SSH_CONNECTION" ]
+	then
+	    export PS1="\n\e[1;30;107m${SC}${D}${RC}  [\u@\H $(arch)\e[30m] : \e[31m\W\e[0m\n]] "
 	else
-	    export PS1="\n\e[1;30;47m${SC}${D}${RC}  [\u@\h] : \e[32m\W\e[0m\n]] "
+	    export PS1="\n\e[1;37; 44m${SC}${D}${RC}  [\u@\H $(arch)\e[37m] : \e[92m\W\e[0m\n]] "
 	fi
-
     }
     export PROMPT_COMMAND="cmd_prompt"
 
