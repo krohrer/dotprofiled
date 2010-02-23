@@ -6,27 +6,19 @@ then
     SC=$(tput sc)
     RC=$(tput rc)
 
-    if [ `whoami` = 'root' ]
-    then
-	function cmd_prompt()
-	{
-	    D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+    function cmd_prompt()
+    {
+	D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+	if [ `whoami` = 'root' ]
+	then
 	    export PS1="\n\e[1;37;41m${SC}${D}${RC}  [\u@\h] : \e[33m\W\e[0m\n]] "
-	}
-    elif [ -z "$SSH_CONNECTION" ]
-    then
-	function cmd_prompt()
-	{
-	    D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+	elif [ -z "$SSH_CONNECTION" ]
 	    export PS1="\n\e[1;37;44m${SC}${D}${RC}  [\u@\h] : \e[32m\W\e[0m\n]] "
-	}
-    else
-	function cmd_prompt()
-	{
-	    D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
+	else
 	    export PS1="\n\e[1;30;47m${SC}${D}${RC}  [\u@\h] : \e[32m\W\e[0m\n]] "
-	}
-    fi
+	fi
+
+    }
     export PROMPT_COMMAND="cmd_prompt"
 
 # Fallback
