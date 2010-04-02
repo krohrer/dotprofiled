@@ -48,6 +48,8 @@ alias cdgrep="cdmore | grep -i"
 alias preview="open -a /Applications/Preview.app"
 alias mydate="date \"+%y%m%d-%H%M\""
 alias timestamp="date +%Y%m%d%H%M"
+alias gst="git status"
+alias gff="git diff"
 
 # SQL
 ##############################################################################
