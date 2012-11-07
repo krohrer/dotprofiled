@@ -9,7 +9,7 @@ then
     function cmd_prompt()
     {
 	D=$(printf "%$((${COLUMNS}-2))s  " "$(date +'[%G-%m-%d %T]')")
-	if [ `whoami` == 'root' ]
+	if [ "$(whoami)" == 'root' ]
 	then
 	    export PS1="\n\e[1;37; 41m${SC}${D}${RC}  [\u@\H $(arch)\e[37m] : \e[93m\W\e[0m\n]] "
 	elif [ -n "$SSH_CONNECTION" ]
