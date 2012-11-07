@@ -36,7 +36,7 @@ alias obuild="ocamlbuild -use-ocamlfind"
 # Open a new instance of Emacs everytime and wait for it
 export EDITOR="open -Wna /Applications/MacPorts/Emacs.app"
 # This, on the other hand reuses an already open Emacs.app
-alias osxemacs="open -a /Applications/MacPorts/Emacs.app"
+alias em="open -a /Applications/MacPorts/Emacs.app"
 
 # MISC
 ##############################################################################
