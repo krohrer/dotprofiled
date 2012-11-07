@@ -16,7 +16,7 @@ export DISPLAY=:0.0
 ##############################################################################
 
 # Colored ls in OS X (builtin):
-# export CLICOLOR=1
+export CLICOLOR=1
 
 # Colored ls in GNU *nix (use GNU fileutils from MacPorts for OS X):
 # I like COLORS! (May not be supported on all systems)
@@ -28,15 +28,14 @@ export GREP_OPTIONS="--color"
 ##############################################################################
 
 alias ocaml-libdir="ocamlc -where"
+alias obuild="ocamlbuild -use-ocamlfind"
 
 # TEXTEDITING
 ##############################################################################
 
-# Subversion needs this for various commands
-export EDITOR="open -a /Applications/MacPorts/Emacs.app"
-
-alias sex="see -m xml"
-
+# Open a new instance of Emacs everytime and wait for it
+export EDITOR="open -Wna /Applications/MacPorts/Emacs.app"
+# This, on the other hand reuses an already open Emacs.app
 alias osxemacs="open -a /Applications/MacPorts/Emacs.app"
 
 # MISC
@@ -61,4 +60,5 @@ alias gff="git diff"
 #alias svnup="svnserve --daemon --root /Users/krohrer/Repository"
 
 alias x11="open -a X11 && export DISPLAY=:0.0"
+
 
